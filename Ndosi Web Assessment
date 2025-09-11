@@ -1,0 +1,100 @@
+1. Login & Session
+   - Valid credentials -> Tabs visible, token exists (localStorage.authToken).
+   - Invalid password -> Alert text contains: Login failed: Invalid login credentials (or API msg).
+   - Trim spaces in email/password -> Still logs in (spaces removed).
+   - Change hash away then back -> Must login again (forced logout).
+   - Click Logout -> Token removed, login screen shown.
+2. Registration (if used)
+   - Password mismatch -> Alert: Passwords do not match!
+   - Bad email format -> Alert: Please enter a valid email address
+   - Password < 8 -> Alert: Password must be at least 8 characters long
+   - Success -> Alert includes Registration successful; login form shown with email filled.
+3. Wizard Step 1 Validation
+   - No device -> Select a device type
+   - Device chosen, no brand -> Select a brand
+   - No storage -> Choose storage size
+   - Quantity 0 / blank -> Quantity must be ≥ 1
+   - Quantity 11 -> Quantity must be ≤ 10
+   - Address blank -> Address required
+   - All corrected + Next -> Step 2 shown.
+   - Error summary region appears when any error: Please correct highlighted fields.
+4. Step 1 Pricing Panel
+   - No device+storage -> Unit: —, Subtotal: —
+   - Phone 64GB Qty1 -> Unit $400.00 Subtotal $400.00
+   - Phone 128GB Qty2 -> Unit $480.00 Subtotal $960.00
+   - Laptop 256GB Qty1 -> Unit $1,360.00
+   - Clear device -> Pricing resets to —
+5. Step 2 Extras & Pricing
+   - Shipping toggle Standard->Express -> Shipping row $25.00 added.
+   - Warranty None->1yr->2yr -> Warranty row 0 / 49 / 89.
+   - Formula check example (Phone 128GB Qty2 Express +1yr SAVE10): (480\*2)+49+25 = 1034 -> 10% = 103.40 -> Total 930.60.
+6. Discount Codes (Single Item)
+   - SAVE10 -> Message: Code SAVE10 applied: -10%
+   - SAVE20 after SAVE10 -> Message updates: Code SAVE20 applied: -20%
+   - random -> Invalid code
+   - Clear input + Apply -> discount removed (no message)
+7. Add To Cart (Multi-Item)
+   - Add valid Step2 item -> Cart panel shows (Cart (1 item)).
+   - Add different device -> (Cart (2 items)).
+   - First item discounted, second not -> Only first shows discount line in its preview text.
+   - Remove one -> Item gone; Grand Total = sum remaining totals.
+   - Remove last -> Cart panel hidden.
+   - Try Add with missing storage -> Errors appear; cart count unchanged.
+8. Cart Preview Panel (While on Step2) Appears below pricing once ≥1 item added; remove there updates cart summary instantly.
+9. Review Cart Order Flow
+   - Click Review Cart Order -> Place Order / Cancel buttons + info box appear.
+   - Click Cancel -> Reverts to single Review Cart Order button.
+   - Click Place Order -> Success toast text starts with Cart ( and contains Grand Total:; cart cleared.
+   - Double-click Place Order fast -> Only one toast.
+10. Confirm Purchase (Single)
+    - No cart items -> Toast summary includes Total: $ single item.
+    - Cart already has items -> Toast only current item; cart list unchanged.
+11. Resets & Navigation
+    - Confirm Purchase -> Form back to defaults (Step1, cleared).
+    - Place Order (cart) -> Cart empty; confirm state reset.
+    - Switch tab (e.g. API) then back -> Wizard at Step1, cleared.
+12. Edge / Negative
+    - Quantity dev-tools set 999 -> Error Quantity must be ≤ 10.
+    - Remove discounted item -> Grand Total drops by its discounted total; no leftover discount.
+    - Attempt Place Order with empty cart (after manual DOM tweak) -> No toast (guard works).
+13. Multi-Device (2 Types) Cart
+    - Add Phone (apple 64GB qty1, standard ship, no warranty, no discount) + Add To Cart -> Cart (1).
+    - Configure Laptop (macbook pro 256GB qty1, express ship, 1yr warranty, SAVE10) + Add To Cart -> Cart (2).
+    - Both different deviceType values (phone, laptop) appear — shows multi-type support.
+    - Only laptop line shows discount + express shipping + warranty costs; phone line stays plain.
+    - Grand Total = phone total + laptop total (add manually, matches to 2 decimals).
+    - Remove laptop -> Grand Total becomes just phone's total; no discount lines remain.
+    - Remove phone instead -> Discount line for laptop still present; math unchanged for laptop.
+    - Edge: Quickly add phone then immediately laptop without revisiting Step1 for phone again -> Earlier phone entry keeps its original color/storage (no bleed from laptop choices).
+14. Additional Coverage
+    - Device change resets brand: pick phone+apple, switch to tablet -> brand cleared, brand select disabled until re-picked.
+    - Preview image vs SVG fallback: laptop/macbook uses laptop image, unknown brand would fallback to SVG (add a temporary brand via dev tools to observe).
+    - Discount removal: apply SAVE10 then clear field + Apply -> discount message disappears, pricing recalculates without discount.
+    - Higher discount example: Use SAVE20 on laptop config; manually verify 20% math (show working).
+    - 2yr warranty + express + SAVE10 combined math: verify subtotal + 89 + 25 − 10% lines equal displayed Total.
+    - State isolation: Add discounted laptop to cart, configure new phone (no discount) -> existing cart laptop keeps discount line.
+    - Remove from preview list (Step2 small panel) updates main cart summary totals instantly (no stale total).
+    - Single Confirm Purchase with discount: apply SAVE10 then Confirm Purchase (not cart) -> toast includes discounted Total (no cart wording).
+    - Double-click Place Order (cart) protection: rapid double click yields one toast and cart empties once.
+    - Tab navigation reset: partially fill form, switch to API tab, return -> form back to defaults (Step1, cleared).
+    - Reload clears session: after login press refresh -> must login again (token removed).
+    - Aria-live announcements: trigger an error, then fix and submit; ensure screen reader (or inspect DOM) updates alert region.
+    - Color persistence: change color to gold for phone, Add To Cart -> new blank form defaults back to black (expected).
+    - Reactive subtotal: change quantity from 1->2->3 on Step1; Subtotal updates each change without blur.
+    - Precision check: choose config producing non-terminating decimal after discount (e.g. phone 128GB qty3 SAVE10) and verify rounded to 2 decimals correctly.
+    - Cart quantity edit: use + / - or direct input to change an item's quantity (1–10); total and Grand Total recalc instantly; buttons disable at bounds.
+15. Accessibility Quick
+    - Tab cycles through all actionable elements (login -> tabs -> form -> cart buttons).
+    - Radio storage selectable by keyboard.
+    - Error text uses role=alert; toast uses role=status.
+16. Exact Error Strings (Verify)
+    - Select a device type
+    - Select a brand
+    - Choose storage size
+    - Quantity must be ≥ 1
+    - Quantity must be ≤ 10
+    - Address required
+    - Invalid code
+    - Login alert contains Invalid login credentials
+    - Error summary: Please correct highlighted fields.
+17. Pass Criteria: All expectations met, totals math correct to 2 decimals, no console errors.
