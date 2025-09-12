@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TestNG Suite" verbose="1" parallel="false">
+    <!-- PDND: Listener for the extent report. Alternative is to have listener annotated for each
+    class, specifying the ExtentReport utility class-->
+    <!-- <listeners>
+        <listener class-name="com.ndosi.utilities.ExtentReportsUtil" />
+    </listeners> -->
+    <test name="web_assessment execution test pack">
+        <classes>
+            <class name="com.ndosi.tests.LoginTest">
+                <methods>
+                    <exclude name="invalidLoginDetails" />
+                </methods>
+            </class>
+            <!-- <class name="com.ndosi.tests.BurgerMenuTest"> -->
+            <class name="com.ndosi.tests.ProductsTest" />
+            <class name="com.ndosi.tests.SortProductsTest" />
+            <class name="com.ndosi.tests.CartTest" />
+            <class name="com.ndosi.tests.CheckoutInfoTest" />
+            <class name="com.ndosi.tests.CheckoutOverviewTest" />
+            <class name="com.ndosi.tests.FinishOrderTest" />
+        </classes>
+    </test>
+</suite>
