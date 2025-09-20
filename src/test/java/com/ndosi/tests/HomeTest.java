@@ -19,7 +19,7 @@ public class HomeTest extends BrowserFactory{
         try {
             Assert.assertTrue(new Home(driver).verifyUserIsOnHomePage() == 7, "Fail. Number of navigation headers has changed");
 
-            Assert.assertTrue(new Home(driver).verifyLoginViewIsDisplayed(), "Fail. Login view is not displayed");
+            Assert.assertTrue(new Home(driver).verifyLoginPageIsDisplayed(), "Fail. Login view is not displayed");
         } catch (Exception e) {
             logger.error("Class: {}", HomeTest.class.getName(), e);
             System.out.println("Class: " + HomeTest.class.getName() + "Exception caught: " + e.getMessage());

@@ -41,7 +41,7 @@ public class Home {
         return navBarList;
     }
 
-    public boolean verifyLoginViewIsDisplayed(){
+    public boolean verifyLoginPageIsDisplayed(){
         return loginView.isDisplayed();
     }
 
