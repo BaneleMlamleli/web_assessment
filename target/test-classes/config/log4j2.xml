@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Properties>
-        <Property name="basePath">src/main/java/com/saucedemo/logs</Property>
+        <Property name="basePath">src/main/java/com/ndosi/logs</Property>
     </Properties>
     <Appenders>
         <!-- Console Appender -->
@@ -9,14 +9,14 @@
             <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
         <!-- File Appender -->
-        <RollingFile name="File" fileName="${basePath}/saucedemo_logs.log"
-            filePattern="${basePath}/saucedemo_logs-%d{dd-MM-yyyy HH:mm:ss}.log">
+        <RollingFile name="File" fileName="${basePath}/ndosi_logs.log"
+            filePattern="${basePath}/ndosi_logs-%d{dd-MM-yyyy HH:mm:ss}.log">
             <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
             <SizeBasedTriggeringPolicy size="5000" />
         </RollingFile>
 
-        <!-- <File name="log_file" fileName="${basePath}/saucedemo_logs.log"
-            filePattern="${basePath}/saucedemo_logs-%d{dd-MM-yyyy HH:mm:ss}.log">
+        <!-- <File name="log_file" fileName="${basePath}/ndosi_logs.log"
+            filePattern="${basePath}/ndosi_logs-%d{dd-MM-yyyy HH:mm:ss}.log">
             <PatternLayout>
                 <Pattern>
                     %d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n
@@ -28,7 +28,7 @@
 
     <Loggers>
         <!-- Application Logger -->
-        <Logger name="com.saucedemo" level="debug" additivity="false">
+        <Logger name="com.ndosi" level="debug" additivity="false">
             <AppenderRef ref="Console" />
             <AppenderRef ref="File" />
             <!-- <AppenderRef ref="log_file" /> -->
