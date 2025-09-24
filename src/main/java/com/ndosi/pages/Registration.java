@@ -39,7 +39,6 @@ public class Registration {
         PageFactory.initElements(driver, this);
     }
 
-
     public void goToRegistration(){
         btnLearningMaterial.click();
         btnSignUpHere.click();

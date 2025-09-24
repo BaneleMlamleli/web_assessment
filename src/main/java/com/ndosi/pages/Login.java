@@ -21,21 +21,41 @@ public class Login {
     @FindBy(id = "login-submit")
     WebElement btnLogin;
 
+    @FindBy(id = "practice-heading")
+    WebElement successfulLoginMessage;
+
     public Login(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void invalidEmail(){}
-
-    public boolean invalidLoginCredentials(){
-        return true;
+    public String validCredentials(String email, String password){
+        String loginMessage = null;
+        try {
+            btnLearningMaterial.click();
+            txtEmail.sendKeys(email);
+            txtPassword.sendKeys(password);
+            btnLogin.click();
+            loginMessage = successfulLoginMessage.getText();
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        return loginMessage;
     }
 
-    public boolean validCredentials(){
-        return true;
+    public String invalidCredentials(String email, String password){
+        String errorResponseMessage = null;
+        try {
+            btnLearningMaterial.click();
+            txtEmail.sendKeys(email);
+            txtPassword.sendKeys(password);
+            btnLogin.click();
+            errorResponseMessage = driver.switchTo().alert().getText();
+            driver.switchTo().alert().dismiss();
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        System.out.println("INVALID CREDENTAILS RESPONSE: " + errorResponseMessage);
+        return errorResponseMessage;
     }
-
-
-
 }
