@@ -70,9 +70,9 @@ public class BrowserFactory {
     public void terminateBrowser(){
         if (driver != null) {
             driver.close();
-            driver = null;
-            // driver.quit();
-        }
+            // driver = null;
+            driver.quit();
+        } 
     }
 
 }

@@ -10,7 +10,8 @@ import com.ndosi.pages.Home;
 
 public class HomeTest extends BrowserFactory{
 
-    Logger logger = LogManager.getLogger(HomeTest.class.getName());
+    Logger logger = LogManager.getLogger(new Object() {
+    }.getClass().getName());
 
     @Test
     public void verifyLandingOnHomePage(){
