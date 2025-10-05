@@ -12,14 +12,18 @@ import org.openqa.selenium.support.PageFactory;
 public class Home {
 
     WebDriver driver;
+    
     @FindBy(id = "nav-btn-overview")
     protected WebElement btnHome;
 
-    @FindBy(id = "nav-tabs")
+    @FindBy(xpath = "//ul[@id='nav-tabs']/child::li")
     protected List<WebElement> lstNavigationBar;
 
     @FindBy(id = "nav-btn-practice")
     protected WebElement btnLearningMaterial;
+
+    @FindBy(xpath = "//span[normalize-space()='Access Learning Materials']")
+    protected WebElement loginView;
 
     Logger logger = LogManager.getLogger(new Object() {
     }.getClass().getName());
@@ -31,11 +35,15 @@ public class Home {
     }
 
     public int verifyUserIsOnHomePage(){
-        logger.info("**** Xxx ****");
+        logger.info("**** Method 'verifyUserIsOnHomePage' ****");
         int navBarList = lstNavigationBar.size();
         btnHome.click();
         btnLearningMaterial.click();
         return navBarList;
+    }
+
+    public boolean verifyLoginPageIsDisplayed(){
+        return loginView.isDisplayed();
     }
 
 }

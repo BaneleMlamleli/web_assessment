@@ -14,11 +14,11 @@
             </class> -->
             <!-- <class name="com.ndosi.tests.BurgerMenuTest"> -->
             <class name="com.ndosi.tests.HomeTest" />
-            <!-- <class name="com.ndosi.tests.SortProductsTest" />
-            <class name="com.ndosi.tests.CartTest" />
-            <class name="com.ndosi.tests.CheckoutInfoTest" />
-            <class name="com.ndosi.tests.CheckoutOverviewTest" />
-            <class name="com.ndosi.tests.FinishOrderTest" /> -->
+            <class name="com.ndosi.tests.RegistrationTest" />
+            <class name="com.ndosi.tests.LoginTest" />
+            <!-- <class name="com.ndosi.tests.CheckoutInfoTest" /> -->
+            <!-- <class name="com.ndosi.tests.CheckoutOverviewTest" /> -->
+            <!-- <class name="com.ndosi.tests.FinishOrderTest" /> -->
         </classes>
     </test>
 </suite>
