@@ -1,5 +1,6 @@
 package com.ndosi.pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,7 +34,9 @@ public class Login {
         String loginMessage = null;
         try {
             btnLearningMaterial.click();
+            txtEmail.click();
             txtEmail.sendKeys(email);
+            txtPassword.click();
             txtPassword.sendKeys(password);
             btnLogin.click();
             loginMessage = successfulLoginMessage.getText();
@@ -45,17 +48,20 @@ public class Login {
 
     public String invalidCredentials(String email, String password){
         String errorResponseMessage = null;
+        Alert alert = driver.switchTo().alert();
         try {
             btnLearningMaterial.click();
+            txtEmail.click();
             txtEmail.sendKeys(email);
+            txtPassword.click();
             txtPassword.sendKeys(password);
             btnLogin.click();
-            errorResponseMessage = driver.switchTo().alert().getText();
-            driver.switchTo().alert().dismiss();
+            errorResponseMessage = alert.getText();
+            alert.accept();
         } catch (Exception e) {
             e.getStackTrace();
         }
-        System.out.println("INVALID CREDENTAILS RESPONSE: " + errorResponseMessage);
+        System.out.println("INVALID CREDENTIALS RESPONSE: " + errorResponseMessage);
         return errorResponseMessage;
     }
 }

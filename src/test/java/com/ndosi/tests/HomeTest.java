@@ -3,11 +3,13 @@ package com.ndosi.tests;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ndosi.core.BrowserFactory;
 import com.ndosi.pages.Home;
 
+@Listeners(com.ndosi.utils.ExtentReportsUtil.class)
 public class HomeTest extends BrowserFactory{
 
     Logger logger = LogManager.getLogger(new Object() {
