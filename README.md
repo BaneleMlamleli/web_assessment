@@ -1,6 +1,6 @@
 # Ndosi Test Automation
 
-This is Java Selenium Framework that automates [Ndosi Test Automation](https://gray-island-0bd788c1e.2.azurestaticapps.net/#overview), a small e-commerce website. My aim is to try and create a robust, maintainable, and scalable Selenium framework that implements real world project concepts, standards and technologies
+This is Java Selenium Framework that automates [Ndosi Test Automation](https://www.ndosiautomation.co.za/), a small e-commerce website. My aim is to try and create a robust, maintainable, and scalable Selenium framework that implements real world project concepts, standards and technologies
 
 ## Tech-stack for the project
 
