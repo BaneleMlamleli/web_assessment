@@ -26,6 +26,7 @@ public class LoginTest extends BrowserFactory{
 
     @Test(priority = 3)
     public void emptyUsernameFieldAndWrongPassword(){
+        System.out.println("******* emptyUsernameFieldAndWrongPassword clicked");
         Assert.assertEquals(new Login(driver).invalidCredentials("", "wrong_password"),"Please enter both username and password");
     }
 

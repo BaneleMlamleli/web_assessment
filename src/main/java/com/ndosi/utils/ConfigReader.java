@@ -3,6 +3,7 @@ package com.ndosi.utils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.lang.StackWalker.StackFrame;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,10 +22,8 @@ public class ConfigReader {
             fileInputStream = new FileInputStream("src/test/resources/config/config.properties");
             properties.load(fileInputStream);
         } catch (IOException e) {
-            logger.error("'" + e.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
-            System.out.println("'" + e.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + e.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
+            System.out.println("'" + e.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         }
     }
 

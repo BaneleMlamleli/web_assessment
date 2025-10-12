@@ -1,5 +1,7 @@
 package com.ndosi.pages;
 
+import java.lang.StackWalker.StackFrame;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
@@ -58,11 +60,9 @@ public class Registration {
             alertResponse = alert.getText();
             alert.accept();
         } catch (Exception e) {
-            logger.error("'" + e.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + e.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
             e.printStackTrace();
         }
-        System.out.println("ALERT RESPONSE: " + alertResponse);
         return alertResponse;
     }
 

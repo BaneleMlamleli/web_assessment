@@ -2,6 +2,7 @@ package com.ndosi.utils;
 
 import java.time.Duration;
 import java.util.NoSuchElementException;
+import java.lang.StackWalker.StackFrame;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,11 +49,9 @@ public class WaitsFactory {
         try {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         } catch (NotFoundException nfe) {
-            logger.error("'" + nfe.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nfe.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         } catch (NoSuchElementException nse) {
-            logger.error("'" + nse.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nse.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         }
     }
 
@@ -61,11 +60,9 @@ public class WaitsFactory {
             Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.visibilityOf(webElement));
         } catch (NotFoundException nfe) {
-            logger.error("'" + nfe.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nfe.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         } catch (NoSuchElementException nse) {
-            logger.error("'" + nse.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nse.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         }
     }
 
@@ -74,11 +71,9 @@ public class WaitsFactory {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.visibilityOfElementLocated(webElement));
         } catch (NotFoundException nfe) {
-            logger.error("'" + nfe.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nfe.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         } catch (NoSuchElementException nse) {
-            logger.error("'" + nse.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nse.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         }
     }
 
@@ -87,11 +82,9 @@ public class WaitsFactory {
             Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(btnElement));
         } catch (NotFoundException nfe) {
-            logger.error("'" + nfe.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nfe.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         } catch (NoSuchElementException nse) {
-            logger.error("'" + nse.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nse.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         }
     }
 
@@ -100,11 +93,9 @@ public class WaitsFactory {
             Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.invisibilityOf(webElement));
         } catch (NotFoundException nfe) {
-            logger.error("'" + nfe.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nfe.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         } catch (NoSuchElementException nse) {
-            logger.error("'" + nse.getMessage() + "' in method '" + new Object() {
-            }.getClass().getEnclosingMethod().getName() + "'");
+            logger.error("'" + nse.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
         }
     }
 }
