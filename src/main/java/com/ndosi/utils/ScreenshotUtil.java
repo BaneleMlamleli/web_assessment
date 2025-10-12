@@ -2,6 +2,7 @@ package com.ndosi.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.StackWalker.StackFrame;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -26,16 +27,17 @@ public class ScreenshotUtil {
         try {
             TakesScreenshot screenshot = (TakesScreenshot) driver;
             File src = screenshot.getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(src,
-                    new File(System.getProperty("user.dir") + "/src/test/reports/screenshot/" + failedImageFile + ".png"));
+            File destination = new File(System.getProperty("user.dir") + "/src/test/reports/screenshot/",failedImageFile + ".png");
+            FileUtils.copyFile(src, destination);
             logger.info("Successfully captured a screenshot");
         } catch (IOException ioe) {
             logger.error("**** IOException while taking screenshot ****");
-            logger.error(ioe.getMessage());
+            logger.error("'" + ioe.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
             ioe.printStackTrace();
         } catch (Exception e) {
             logger.error("**** Exception while taking screenshot ****");
-            logger.error(e.getMessage());
+            logger.error("'" + e.getMessage() + "' in method '" + StackWalker.getInstance().walk(frames -> frames.skip(0).findFirst().map(StackFrame::getMethodName).orElse("<Unknown>")) + "'");
+            e.printStackTrace();
         }
     }
 }
