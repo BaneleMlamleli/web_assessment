@@ -29,7 +29,7 @@ public class ExtentReportsUtil extends BrowserFactory implements ITestListener {
         logger.info("**** Executing onStart method in the ExtentReportsUtil class ****");
         String timestamp = new SimpleDateFormat("dd-MM-yyyy-HH.mm.ss").format(new Date());
         extentSparkReporter = new ExtentSparkReporter(
-                System.getProperty("user.dir") + "/src/test/reports/ndosi_inventory_shop_reports_" + timestamp + ".html");
+        System.getProperty("user.dir") + "/src/test/reports/ndosi_inventory_shop_reports_" + timestamp + ".html");
         extentSparkReporter.config().setDocumentTitle("Ndosi automation reports");
         extentSparkReporter.config().setReportName("Functional Testing");
         extentSparkReporter.config().setTheme(Theme.DARK);
@@ -55,7 +55,9 @@ public class ExtentReportsUtil extends BrowserFactory implements ITestListener {
         String timestamp = new SimpleDateFormat("dd-MM-yyyy_HH.mm.ss").format(new Date());
         String failedImageFile = result.getName() + "_" + timestamp;
         extentTest = extentReports.createTest(failedImageFile);
-        new ScreenshotUtil(driver).screenShot(failedImageFile);
+        logger.info("driver status -> " + driver);
+        ScreenshotUtil.screenShot(driver, failedImageFile);
+        // new ScreenshotUtil().screenShot(driver, failedImageFile);
         extentTest.addScreenCaptureFromPath(
                 System.getProperty("user.dir") + "/src/test/reports/screenshot/" + failedImageFile +
                         ".png");

@@ -13,16 +13,16 @@ import org.openqa.selenium.WebDriver;
 
 public class ScreenshotUtil {
 
-    WebDriver driver;
+    // WebDriver driver;
 
-    public ScreenshotUtil(WebDriver driver) {
-        this.driver = driver;
-    }
+    // public ScreenshotUtil(WebDriver driver) {
+    //     this.driver = driver;
+    // }
 
     public static Logger logger = LogManager.getLogger(new Object() {
     }.getClass().getName());
 
-    public void screenShot(String failedImageFile) {
+    public static void screenShot(WebDriver driver, String failedImageFile) {
         logger.info("**** Executing screenShot method in the ScreenshotUtil class ****");
         try {
             TakesScreenshot screenshot = (TakesScreenshot) driver;

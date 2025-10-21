@@ -15,7 +15,7 @@ import com.ndosi.utils.ConfigReader;
 
 public class BrowserFactory {
 
-    protected WebDriver driver;
+    public WebDriver driver;
     final String BROWSER = new ConfigReader().getProperty("browser");
     final String BASE_URL = new ConfigReader().getProperty("baseUrl");
 
@@ -39,6 +39,7 @@ public class BrowserFactory {
                 driver.get(BASE_URL);
                 driver.manage().window().maximize();
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+                logger.info("**** Chrome browser instance: "+driver+" ****");
                 break;
             case "firefox":
                 logger.info("**** Firefox browser ****");
